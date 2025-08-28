@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="CatsSoupApp.View.CatAssignView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CatsSoupApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FFC5EA">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5" Grid.Column="1">
+                <Label Content="Last Unlocked Station:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,0,0"/>
+                <ComboBox Name="StationCombo" Width="200" Height="25" IsEditable="True"
+                          ItemsSource="{Binding FacilityCollection}"
+                          SelectedItem="{Binding LastFacility}"/>
+                <Button Content="Assign" Width="90" Margin="5,0,0,0" Background="#FF91FF" Command="{Binding RunAssign}"/>
+            </StackPanel>
+
+            <Button Content="GO TO LIST SCREEN" Command="{Binding SwitchToListView}" 
+                    Grid.Column="0" Margin="2,2"
+                    Background="#E76FA9"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Height="40"/>
+        </Grid>
+
+        <Grid Background="White" Grid.Row="1">
+            <ScrollViewer>
+                <TextBlock TextWrapping="Wrap"
+                           Margin="5"
+                           Text="{Binding AssignResult}"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>
