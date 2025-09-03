@@ -83,6 +83,7 @@ namespace CatsSoupApp.ViewModel
                     Cats.Add(NewCat);
                 }
 
+                SelectedCat = null;
                 ClearForm.Execute(null);
                 OnPropertyChanged(nameof(Cats));
             }
